@@ -68,7 +68,7 @@ function capture (success, errorCallback, opts) {
 
     video.width = targetWidth;
     video.height = targetHeight;
-    button.innerHTML = 'Capture!';
+    button.innerHTML = 'Take photo!';
 
     button.onclick = function () {
         // create a canvas and capture a frame from video stream
@@ -112,7 +112,12 @@ function capture (success, errorCallback, opts) {
     };
 
     if (navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        navigator.mediaDevices.getUserMedia({
+            audio: false,
+            video: {
+              facingMode: 'environment'
+            }
+          })
             .then(successCallback)
             .catch(errorCallback);
     } else if (navigator.getUserMedia) {
