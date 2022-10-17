@@ -53,9 +53,17 @@ function capture (success, errorCallback, opts) {
     var localMediaStream;
     var targetWidth = opts[3];
     var targetHeight = opts[4];
+    var cameraDirection = opts[11];
+    const back = {
+        facingMode: 'environment'
+    };
+    const front = {
+        facingMode: 'user'
+    };
 
     targetWidth = targetWidth === -1 ? 320 : targetWidth;
     targetHeight = targetHeight === -1 ? 240 : targetHeight;
+    cameraDirection = cameraDirection === -1 || cameraDirection === 0 ? back : front;
 
     var video = document.createElement('video');
     var button = document.createElement('button');
@@ -114,9 +122,7 @@ function capture (success, errorCallback, opts) {
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({
             audio: false,
-            video: {
-              facingMode: 'environment'
-            }
+            video: cameraDirection
           })
             .then(successCallback)
             .catch(errorCallback);
