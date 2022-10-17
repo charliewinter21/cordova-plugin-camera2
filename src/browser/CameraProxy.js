@@ -74,8 +74,6 @@ function capture (success, errorCallback, opts) {
     parent.appendChild(video);
     parent.appendChild(button);
 
-    video.width = targetWidth;
-    video.height = targetHeight;
     button.innerHTML = 'Take photo!';
 
     button.onclick = function () {
