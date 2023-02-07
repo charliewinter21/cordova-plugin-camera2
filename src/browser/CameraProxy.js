@@ -120,7 +120,11 @@ function capture (success, errorCallback, opts) {
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({
             audio: false,
-            video: cameraDirection
+            video: {
+                facingMode: cameraDirection,
+                width: 1280,
+                height: 720
+            }
           })
             .then(successCallback)
             .catch(errorCallback);
